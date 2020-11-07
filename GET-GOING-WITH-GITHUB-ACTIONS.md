@@ -1,6 +1,6 @@
 # Get Go-ing with GitHub Actions
 
-Welcome to "Get Go-ings with GitHub Actions" ([aka.ms/go-actions](https://aka.ms/go-actions)) delivered first at GopherCon 2020 (November 9th-13th) by Aaron Wislang ([@as\_w](https://twitter.com/as_w)) and David Justice ([@davidjustice](https://twitter.com/davidjustice)).
+Welcome to "Get Go-ing with GitHub Actions" ([aka.ms/go-actions](https://aka.ms/go-actions)) delivered first at GopherCon 2020 (November 9th-13th) by Aaron Wislang ([@as\_w](https://twitter.com/as_w)) and David Justice ([@davidjustice](https://twitter.com/davidjustice)).
 
 This **interim landing page**, available via <https://aka.ms/go-actions>, will be **updated with full details just before the workshop**, along with the full contents of the GitHub repo(s) we will be using throughout.
 
