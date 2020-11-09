@@ -26,7 +26,7 @@ We also include our first (optional) GitHub Action (`1-hugo-setup`) that can boo
 
 ## Let's setup our first Hugo site with Actions
 
-1. Open the [the-gophers/go-actions](https://github.com/the-gophers/go-actinos) and click the "Use this template" button.
+1. Open the [the-gophers/go-actions](https://github.com/the-gophers/go-actions) and click the "Use this template" button.
     > [Template repositories](https://github.blog/2019-06-06-generate-new-repositories-with-repository-templates/) are a useful way to make any project project or sample simple to share and be used as a starting point by others. GitHub Actions workflows are included whenever a repo is used as a template repo, or forked.
 1. Select your own account and create a new repository. Leaving the name `go-actions` is a good option.
 1. Check the `Include all branches` box before clicking the `Create repository from template` button.
