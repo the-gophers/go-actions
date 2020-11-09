@@ -1,0 +1,27 @@
+{
+  "version": "2.0",
+  "customHandler": {
+    "description": {
+      "defaultExecutablePath": "bin/hello-gopher",
+      "arguments": [],
+      "workingDirectory": ""
+    },
+    "enableForwardingHttpRequest": true
+  },
+  "extensions": {
+    "http": {
+      "routePrefix": ""
+    }
+  },
+  "logging": {
+    "logLevel": {
+      "default": "Trace"
+    },
+    "applicationInsights": {
+      "samplingExcludedTypes": "Request",
+      "samplingSettings": {
+        "isEnabled": true
+      }
+    }
+  }
+}

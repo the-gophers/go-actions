@@ -1,0 +1,49 @@
+name: 0-azure-storage
+
+on:
+  workflow_dispatch:
+    inputs:
+      storage_container_url:
+        description: 'Storage Container URL'
+        default: 'https://storage_account_name.blob.core.windows.net/container_name/'
+        required: true
+      prefix:
+        description: 'Prefix (no trailing slash)'
+        default: 'latest'
+        required: true
+
+jobs:
+  azcopy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: azcopy install
+      run: |
+        echo "installing azcopy"
+        sudo mkdir -p /home/azcopy/
+        curl -L https://aka.ms/downloadazcopy-v10-linux | tar -zxf - --directory /home/azcopy/
+        sudo mv $(find /home/azcopy/ -type f -name azcopy) /usr/bin/
+    - name: azcopy sync
+      env:
+        SOURCE_DIRECTORY: .
+        AZURE_STORAGE_CONTAINER_URL: ${{ github.event.inputs.storage_container_url }}
+        AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+        GITHUB_SHA: ${{ github.sha }}
+        PREFIX: ${{ github.event.inputs.prefix }}
+      run: |
+        # login to azcopy with AZURE_CREDENTIALS
+        export AZCOPY_SPA_CLIENT_SECRET=$(echo "$AZURE_CREDENTIALS" | jq -r .clientSecret)
+        CLIENT_ID=$(echo "$AZURE_CREDENTIALS" | jq -r .clientId)
+        azcopy login --service-principal --application-id "${CLIENT_ID}"
+
+        # set prefix
+        cd $SOURCE_DIRECTORY
+        [[ -z "${PREFIX:-}" ]] && PREFIX="${GITHUB_REF#refs/heads/}"
+        [[ -z "${PREFIX:-}" ]] && PREFIX='latest'
+
+        echo $PWD
+
+        azcopy sync . "${AZURE_STORAGE_CONTAINER_URL}${PREFIX}" --delete-destination=true --exclude-path=.git
+        echo "${AZURE_STORAGE_CONTAINER_URL}${PREFIX}"
+        azcopy list "${AZURE_STORAGE_CONTAINER_URL}${PREFIX}"
+
