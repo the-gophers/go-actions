@@ -1,0 +1,35 @@
+name: 0-azure-empty
+
+on:
+  workflow_dispatch:
+    inputs:
+      resource_group:
+        description: 'Resource Group to empty.'
+        default: '201100-gophercon'
+        required: true
+      debug:
+        description: 'debug'
+        default: 'true'
+        required: true
+
+jobs:
+  az-deployment:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - name: az deployment group create
+      env:
+        RESOURCE_GROUP: ${{ github.event.inputs.resource_group }}
+        AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+        GITHUB_SHA: ${{ github.sha }}
+      run: |
+        cd $GITHUB_WORKSPACE/
+        echo "emptying resource group: ${RESOURCE_GROUP}"
+        az deployment group create --resource-group $RESOURCE_GROUP \
+                --template-file 0-azure/azuredeploy.json \
+                --mode Complete \
+                --name empty
+

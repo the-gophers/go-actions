@@ -1,0 +1,31 @@
+name: 0-azure
+
+on:
+  push:
+    branches:
+    - main
+    paths:
+    - 0-azure/**
+  workflow_dispatch:
+    inputs:
+      debug:
+        description: 'debug'
+        default: 'true'
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - name: run DEPLOY.sh
+      env:
+        AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+        GITHUB_SHA: ${{ github.sha }}
+      run: |
+        cd $GITHUB_WORKSPACE/
+        source 0-azure/DEPLOY.sh
+

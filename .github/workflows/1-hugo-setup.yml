@@ -1,0 +1,32 @@
+name: 1-hugo-setup
+
+on:
+  workflow_dispatch:
+    inputs:
+      site_title:
+        description: 'Site Title'
+        default: 'Hello, GopherCon!'
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: hugo.sh
+      env:
+        GITHUB_SHA: ${{ github.sha }}
+        SITE_TITLE: ${{ github.event.inputs.site_title }}
+        SITE_BASEURL: "/${{ github.event.repository.name }}/"
+        SITE_NAME: 1-hugo
+      run: |
+        git config --global user.name github-actions
+        git config --global user.email github-actions@github.com
+        cd /home/
+        source $GITHUB_WORKSPACE/1-hugo/hugo.sh
+        hugo-install-linux
+        cd $GITHUB_WORKSPACE/
+        hugo-new-site
+        hugo-github-init
+        hugo-github-deploy
+

@@ -1,0 +1,32 @@
+name: 2-functions
+
+on:
+  push:
+    branches:
+    - main
+    paths:
+    - 2-functions/**
+  workflow_dispatch:
+    inputs:
+      debug:
+        description: 'debug'
+        default: 'true'
+        required: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - name: run DEPLOY.sh
+      env:
+        AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+        GITHUB_SHA: ${{ github.sha }}
+        DEBUG: ${{ github.event.inputs.debug }}
+      run: |
+        cd $GITHUB_WORKSPACE/2-functions/
+        source DEPLOY.sh
+
