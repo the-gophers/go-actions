@@ -26,7 +26,7 @@ We also include our first (optional) GitHub Action (`1-hugo-setup`) that can boo
 
 ## Let's setup our first Hugo site with Actions
 
-1. Open the [the-gophers/go-actions](https://github.com/the-gophers/go-actinos) and click the "Use this template" button.
+1. Open the [the-gophers/go-actions](https://github.com/the-gophers/go-actions) and click the "Use this template" button.
     > [Template repositories](https://github.blog/2019-06-06-generate-new-repositories-with-repository-templates/) are a useful way to make any project project or sample simple to share and be used as a starting point by others. GitHub Actions workflows are included whenever a repo is used as a template repo, or forked.
 1. Select your own account and create a new repository. Leaving the name `go-actions` is a good option.
 1. Check the `Include all branches` box before clicking the `Create repository from template` button.
@@ -34,7 +34,7 @@ We also include our first (optional) GitHub Action (`1-hugo-setup`) that can boo
 1. Look for the `1-hugo-setup` action on the left hand side. You will see it says "This workflow has a workflow_dispatch event trigger." and you can click `Run workflow`, leave the `Branch: main` by default, and click `Run workflow`. Here you can also supply additional [inputs](https://docs.github.com/en/free-pro-team@latest/actions/creating-actions/metadata-syntax-for-github-actions#inputs) to a `workflow_dispatch` action. We've left an example input called `debug` with a default value of `true`.
     > Note: the `Branch` option will decide both which version of an Actions workflow, and the branch that is checked out when the action runs. In order for a workflow to appear here it must also be present in the default branch of the repo.
 1. Click on the `Actions` tab again, and you will see the action is now running. Click on the action, and then click the job name, `deploy`, where you will see live logs of the build.
-1. In less than a minute, the `1-hugo-setup` workflow will use the `hugo.sh` script to bootstrap a static site in a new `gh-pages-content` branch inside the `current` repo, including new site, the [hugo xmin](https://themes.gohugo.io/hugo-xmin/) theme which we have chosen for you, configuration via [config.toml](https://gohugo.io/getting-started/configuration/#example-configuration), and a new post under `content/posts` with `draft: true` set in its [front matter](https://gohugo.io/content-management/front-matter/#front-matter-variables). 
+1. In less than a minute, the `1-hugo-setup` workflow will use the `hugo.sh` script to bootstrap a static site in a new `gh-pages-content` branch inside the `current` repo, including new site, the [hugo xmin](https://themes.gohugo.io/hugo-xmin/) theme which we have chosen for you, configuration via [config.toml](https://gohugo.io/getting-started/configuration/#example-configuration), and a new post under `content/posts` with `draft: true` set in its [front matter](https://gohugo.io/content-management/front-matter/#front-matter-variables).
 1. Your `1-hugo/` folder in the `gh-pages-content` branch of your repository should now look like this:
 	```
 	.
@@ -143,7 +143,7 @@ on:
     - gh-pages-content
 ```
 
- 
+
 ## Summary
 
 In this brief workflow we've explored GitHub Actions workflows through a quite straightforward workflow that installs and runs a Go CLI tool and using bash scripts as part of our workflow.
@@ -164,4 +164,3 @@ We will continue to explore similar workflows in our next labs covering Go in Se
 - Is it a landing page? A resume? A blog? Documentation for your GitHub project?
 - Could you integrate [wjdp/htmltest](https://github.com/wjdp/htmltest) into your workflow to check for broken links? You could do this via shell scripting, or perhaps an existing Action in the Marketplace.
 - Consider how you might integrate more dynamic content into your site, or implement more advanced functionality such as publishing posts on a schedule.
-
