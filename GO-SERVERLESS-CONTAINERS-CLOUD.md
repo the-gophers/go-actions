@@ -72,10 +72,10 @@ Similar to `0-azure.yml`, this workflow runs our `2-functions/DEPLOY.sh`. It is 
 
 #### [2-functions/DEPLOY.sh](./2-functions/DEPLOY.sh)
 
-A bash script that uses the Azure CLI (`az`) to:
+A bash script that uses the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/what-is-azure-cli) (`az`) to deploy a Serverless Go Function via [Azure Functions custom handlers (preview)](https://docs.microsoft.com/en-us/azure/azure-functions/functions-custom-handlers), that brings Go support to Functions.
 
-- Create an Azure Storage account (`az acr create`)
-- Create an Azure Functions App (`az functionapp create`)
+- Create an [Azure Storage account](https://docs.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-cli) (`az acr create`)
+- Create an [Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview) App with [Azure Functions custom handlers](https://docs.microsoft.com/en-us/azure/azure-functions/functions-custom-handlers) (`az functionapp create`)
 - Set an environment variable, `SERVER_NAME`, for our application (`az functionapp config appsettings`) that includes the `GITHUB_SHA` variable in the format `hello-gopher-${GITHUB_SHA}"`
 - Build our Go binary via `BUILD.sh`, using the Go version installed by default within GitHub Actions. Note: Commented out is the option to use `docker run` and `BUILD.sh` to build our binary using the `golang:1.15.3` containers.
 - `zip` our binary to `deploy.zip` and deploy it to Azure Functions (`az functionapp deployment`)
@@ -123,16 +123,16 @@ Similar to `0-azure.yml`, this workflow runs our `3-containers/DEPLOY.sh`. It is
 
 A bash script that uses the Azure CLI (`az`) to:
 
-- Create an Azure Container Registry (`az acr create`)
-- Build our docker container, which builds our Go HTTP application via multi-stage build, inside the registry using Azure Container Registry Quick Tasks (`az acr build`)
+- Create an [Azure Container Registry](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-get-started-portal) (`az acr create`)
+- Build our docker container, which builds our Go HTTP application via multi-stage build, inside the registry using [Azure Container Registry Tasks](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-quickstart-task-cli) (`az acr build`)
 - Get the credentials for our private Container Registry (`az acr get-credentials`)
-- Deploy an Azure Container Instance (`az container create`), listening on Port 80
+- Deploy our container as an [Azure Container Instance](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-quickstart) (`az container create`), listening on Port 80
 
-#### [3-containers/Dockerfile](./3-containers/DEPLOY.sh)
+#### [3-containers/Dockerfile](./3-containers/Dockerfile)
 
 A simple Dockerfile that uses `golang:rc-alpine` image to perform a multi-stage build of our `hello-echo` echo server, using a `scratch` as the output image.
 
-#### [3-containers/main.go](./3-containers/DEPLOY.sh)
+#### [3-containers/main.go](./3-containers/main.go)
 
 A simple Go echo-server that listens on 3 endpoints, `/`, `/echo` and `/host`, with the ability to override the default port (80) via the `LISTEN_PORT` environment variable.
 
