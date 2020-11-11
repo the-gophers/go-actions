@@ -1,8 +1,8 @@
 # Go for Serverless and Containers in the Cloud
 
 ## Getting Started
-This is a GitHub template repo, so when you click "Use this template", it will create a new copy of this 
-template in your org or personal repo of choice. Once you have created a repo from this template, you 
+This is a GitHub template repo, so when you click "Use this template", it will create a new copy of this
+template in your org or personal repo of choice. Once you have created a repo from this template, you
 should be able to clone and navigate to the root of the repository.
 
 ### What's in Here?
@@ -38,7 +38,7 @@ A manually triggered (`workflow_dispatch`) workflow that will use `az deployment
 
 #### [.github/workflows/0-azure-storage.yml](./.github/workflows/0-azure-storage.yml)
 
-A stand-alone action (currently triggered on `workflow_dispatch`) that will install our Go CLI for Azure Storage, `azcopy`, authenticate against Azure using our `Service Principal` from our `AZURE_CREDENTIALS` GitHub Secret, and use the `azcopy sync` command to sync the contents of our local repository to an Azure Storage Container. 
+A stand-alone action (currently triggered on `workflow_dispatch`) that will install our Go CLI for Azure Storage, `azcopy`, authenticate against Azure using our `Service Principal` from our `AZURE_CREDENTIALS` GitHub Secret, and use the `azcopy sync` command to sync the contents of our local repository to an Azure Storage Container.
 
 Note: you will need to tweak this workflow according to how you would like to use it.
 
@@ -74,7 +74,7 @@ Similar to `0-azure.yml`, this workflow runs our `2-functions/DEPLOY.sh`. It is 
 
 A bash script that uses the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/what-is-azure-cli) (`az`) to deploy a Serverless Go Function via [Azure Functions custom handlers (preview)](https://docs.microsoft.com/en-us/azure/azure-functions/functions-custom-handlers), that brings Go support to Functions.
 
-- Create an [Azure Storage account](https://docs.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-cli) (`az acr create`)
+- Create an [Azure Storage account](https://docs.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-cli) (`az storage account create`)
 - Create an [Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview) App with [Azure Functions custom handlers](https://docs.microsoft.com/en-us/azure/azure-functions/functions-custom-handlers) (`az functionapp create`)
 - Set an environment variable, `SERVER_NAME`, for our application (`az functionapp config appsettings`) that includes the `GITHUB_SHA` variable in the format `hello-gopher-${GITHUB_SHA}"`
 - Build our Go binary via `BUILD.sh`, using the Go version installed by default within GitHub Actions. Note: Commented out is the option to use `docker run` and `BUILD.sh` to build our binary using the `golang:1.15.3` containers.
@@ -107,7 +107,7 @@ The function definition for our `TimerTrigger` function, which is triggered via 
 └── 3-containers
     ├── README.md
     ├── Dockerfile
-    ├── main.go   
+    ├── main.go
     └── DEPLOY.sh
 ```
 
