@@ -6,7 +6,7 @@ We will have two in-person sessions on:
 - Monday November 9th from 12:00 PM-3:00 PM EST (3 Hours). See: <https://www.gophercon.com/agenda/session/395971>
 - Tuesday, November from 10th 6:00 PM - 9:00 PM EST (3 Hours). See: <https://www.gophercon.com/agenda/session/421901>
 
-We will continue to run our lab asynchronously on the GopherCon Discord channel throughout GopherCon via the \#microsoft (sponsors) and #github-actions (speakers) text and voice (workshop instructors) channels. You can also reach out to Aaron (Aaron W#0101) and/or David (devigned#6504), any time.
+We will continue to run our lab asynchronously on the GopherCon Discord (<http://aka.ms/gophercon-discord>) throughout GopherCon via the \#microsoft (sponsors) and #github-actions (speakers) text and voice (workshop instructors) channels. You can also reach out to Aaron (Aaron W#0101) and/or David (devigned#6504), any time.
 
 You can also join us for our Microsoft AMA @ 12:30 PM-2:00 PM EST daily from Wednesday 11 to Friday 13th (see: https://www.gophercon.com/agenda ), followed by other sessions each day.
 
