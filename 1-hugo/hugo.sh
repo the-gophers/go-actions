@@ -7,7 +7,7 @@ function hugo-install-linux {
 	echo "installing hugo"
 	sudo mkdir -p hugo/
 	VERSION="0.76.5"
-	curl -L https://github.com/gohugoio/hugo/releases/download/v${VERSION}/hugo_${VERSION}_Linux-64bit.tar.gz | tar -zxf - --directory hugo/
+	curl -L https://github.com/gohugoio/hugo/releases/download/v${VERSION}/hugo_${VERSION}_Linux-64bit.tar.gz | sudo tar -zxf - --directory hugo/
 	sudo mv hugo/hugo /usr/bin/
 	sudo rm -rf hugo/
 	hugo version
